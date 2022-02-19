@@ -49,7 +49,7 @@ class UserController extends AbstractController
         $manager->remove($user);
         $manager->flush();
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('user_show');
     }
 
     #[Route('/update/{id}', name: 'update')]

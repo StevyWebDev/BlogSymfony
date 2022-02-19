@@ -168,9 +168,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): string
     {
-        return $this->created_at;
+        return $this->created_at->format('Y-m-d');
     }
 
     public function setCreatedAt(\DateTimeImmutable $created_at): self
