@@ -43,6 +43,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    #[Route('/detail/{id}', name: 'detail')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function detail(User $user): Response {
+        return $this->render('user/detail.html.twig', [
+            'user' => $user
+        ]);
+    }
+
     #[Route('/delete/{id}', name: 'delete')]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(User $user, EntityManagerInterface $manager): Response {
@@ -61,7 +69,9 @@ class UserController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('user_detail', [
+                'id' => $user->getId()
+            ]);
         }
 
 

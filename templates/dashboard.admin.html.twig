@@ -25,6 +25,10 @@
                 <li><a href="{{ path('user_login') }}">Connexion</a></li>
                 <li><a href="{{ path('app_register') }}">Inscription</a></li>
             {% endif %}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('user_show') }}">Admin</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -40,6 +44,6 @@
         </aside>
         {% block body %}{% endblock %}
     </main>
-
+</header>
 </body>
 </html>

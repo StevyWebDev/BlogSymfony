@@ -5,6 +5,7 @@
     <table>
         {% for user in users  %}
             <tr>
+                <td>{{ user.id }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.email }}</td>
@@ -15,6 +16,7 @@
                 </td>
                 <td>{{ user.createdAt }}</td>
                 <td><a href="{{ path('user_delete', {'id': user.id}) }}">supprimer</a></td>
+                <td><a href="{{ path('user_detail', {'id': user.id}) }}">Voir le profil</a></td>
             </tr>
         {% endfor %}
     </table>

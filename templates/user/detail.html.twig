@@ -1,0 +1,36 @@
+{% extends 'dashboard.admin.html.twig' %}
+
+
+{% block body %}
+    <div>
+        <span>Nom: {{ user.lastname }}</span>
+    </div>
+    <div>
+        <span>Prénom: {{ user.firstname }}</span>
+    </div>
+    <div>
+        <span>Email: {{ user.email }}</span>
+    </div>
+    <div>
+        <span>Créé le {{ user.createdAt }}</span>
+    </div>
+    <div>
+        Role:
+        {% for role in user.roles %}
+            <p>{{ role }}</p>
+        {% endfor %}
+    </div>
+    {{ render(path('user_update', {'id': user.id})) }}
+    <div>
+        Postes:
+        {% for post in user.posts %}
+            <p>{{ post.content }} - <a href="{{ path('post_findOne', {'id': post.id}) }}">{{ post.title }}</a></p>
+        {% endfor %}
+    </div>
+    <div>
+        Commentaires:
+        {% for comment in user.comments %}
+            <p>{{ comment.content }} - <a href="{{ path('post_findOne', {'id': comment.post.id}) }}">{{ comment.post.title }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}
