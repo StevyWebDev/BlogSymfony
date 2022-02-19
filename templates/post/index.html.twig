@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+    {% for post in posts %}
+        <div>
+            {{ post.title }} -
+            <a href="{{ path('post_findOne', {'id': post.id}) }}"> voir</a> -
+            <a href="{{ path('post_delete', {'id': post.id}) }}"> supprimer</a> -
+            <a href="{{ path('post_form', {'id': post.id}) }}"> modifier</a>
+        </div>
+    {% endfor %}
+
+{% endblock %}

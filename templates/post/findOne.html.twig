@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p>Posté par {{ post.user.firstname }} le {{ post.updateAt }}</p>
+    {% for comment in post.comments %}
+        <p>Commenté par {{ comment.user.firstname }} - le {{ comment.updateAt }}</p>
+        <p>{{ comment.content }}</p>
+    {% endfor %}
+    {% if is_granted('ROLE_USER') %}
+        {{ render(path('comment_form', {'id': post.id})) }}
+    {% else %}
+        <p>Vous devez etre <a href="{{ path('user_login') }}">connecté</a> pour pouvoir commenter</p>
+    {% endif %}
+
+{% endblock %}
